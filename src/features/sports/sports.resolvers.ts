@@ -24,11 +24,17 @@ export const sportsMutationResolvers = {
     addSport: async (_, {name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
         return await dataSources.sportsApi.addSport(name,description,imgs,logo,recommendation);
     },
+    updateSport: async (_, {id,name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
+        return await dataSources.sportsApi.updateSport(id,name,description,imgs,logo,recommendation);
+    },
     deleteSport: async (_, { id }, { dataSources }: ContextValue) => {
         return dataSources.sportsApi.deleteSport(id);
     },
-    addMode: async (_, { sportId,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}, { dataSources }: ContextValue) => {
-        return dataSources.sportsApi.addMode(sportId,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers);
+    addMode: async (_, { sportId,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}, { dataSources }: ContextValue) => {
+        return dataSources.sportsApi.addMode(sportId,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers);
+    },
+    updateMode: async (_, { id,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}, { dataSources }: ContextValue) => {
+        return dataSources.sportsApi.updateMode(id,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers);
     },
     deleteMode: async (_, { modeId,sportId }, { dataSources }: ContextValue) => {
         return dataSources.sportsApi.deleteMode( modeId,sportId);

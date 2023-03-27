@@ -37,6 +37,15 @@ export class sportsApi extends RESTDataSource{
         }
     }
 
+    async updateSport(id:String,name: String,description: String,imgs: String[],logo: String,recommendation: String[]): Promise<RequestResponse>{
+        try{
+            console.log(`addSport`);
+            return await this.put<RequestResponse>(`sport/${id}`,{body:{name,description,imgs,logo,recommendation}});
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     async deleteSport(id: String): Promise<RequestResponse>{
         try{
             console.log(`deleteSport`);
@@ -46,10 +55,19 @@ export class sportsApi extends RESTDataSource{
         }
     }
 
-    async addMode(sportId: String,winningPoints: number,teamsNumber:number,playersPerTeam: number,description: String,substitutePlayers:number): Promise<RequestResponse>{
+    async addMode(sportId: String,name:String,winningPoints: number,teamsNumber:number,playersPerTeam: number,description: String,substitutePlayers:number): Promise<RequestResponse>{
         try{
             console.log(`addMode`);
-            return await this.post<RequestResponse>(`mode`,{body:{sportId,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}});
+            return await this.post<RequestResponse>(`mode`,{body:{sportId,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}});
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async updateMode(id:String,name:String,winningPoints: number,teamsNumber:number,playersPerTeam: number,description: String,substitutePlayers:number): Promise<RequestResponse>{
+        try{
+            console.log(`updateMode`);
+            return await this.put<RequestResponse>(`mode/${id}`,{body:{id,name,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}});
         }catch(error){
             console.log(error);
         }

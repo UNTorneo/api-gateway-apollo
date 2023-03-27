@@ -12,6 +12,7 @@ export const sportTypesDef = `#graphql
     type Mode{
         _id: String!
         sportId: String!
+        name: String!
         winningPoints: Int
         teamsNumber:Int
         playersPerTeam: Int
@@ -30,8 +31,10 @@ export const sportsQuerysDef = `#graphql
 
 export const sportsMutationsDef = `#graphql
     addSport(name: String!,description: String!,imgs: [String],logo: String,recommendation: [String]): RequestResponse
+    updateSport(id:String!,name: String,description: String,imgs: [String],logo: String,recommendation: [String]): RequestResponse
     deleteSport(id: String!): RequestResponse
 
-    addMode(sportId: String!,winningPoints: Int,teamsNumber:Int,playersPerTeam: Int,description: String!,substitutePlayers:Int): RequestResponse
+    addMode(sportId: String!,name: String!,winningPoints: Int,teamsNumber:Int,playersPerTeam: Int,description: String!,substitutePlayers:Int): RequestResponse
+    updateMode(id:String!,name:String,winningPoints: Int,teamsNumber:Int,playersPerTeam: Int,description: String,substitutePlayers:Int): RequestResponse
     deleteMode(modeId: String!, sportId: String!): RequestResponse
 `;
