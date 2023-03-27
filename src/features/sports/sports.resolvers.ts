@@ -5,6 +5,18 @@ export const sportsQueryResolvers = {
         const res = await dataSources.sportsApi.getSport(id);
         console.log(res);
         return res;
+    },
+
+    sports:async (_, __, { dataSources }: ContextValue) => {
+        const res = await dataSources.sportsApi.getSports();
+        console.log(res);
+        return res;
+    },
+
+    modes: async (_, {sportId}, { dataSources }: ContextValue) => {
+        const res = await dataSources.sportsApi.getModes(sportId);
+        console.log(res);
+        return res;
     }
 }
 
@@ -14,5 +26,12 @@ export const sportsMutationResolvers = {
     },
     deleteSport: async (_, { id }, { dataSources }: ContextValue) => {
         return dataSources.sportsApi.deleteSport(id);
-    }
+    },
+    addMode: async (_, { sportId,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers}, { dataSources }: ContextValue) => {
+        return dataSources.sportsApi.addMode(sportId,winningPoints,teamsNumber,playersPerTeam,description,substitutePlayers);
+    },
+    deleteMode: async (_, { modeId,sportId }, { dataSources }: ContextValue) => {
+        return dataSources.sportsApi.deleteMode( modeId,sportId);
+    },
+    
 }
