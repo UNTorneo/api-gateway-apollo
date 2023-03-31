@@ -1,22 +1,15 @@
-import { ContextValue } from "../..";
+import { courtTMMutationResolvers, courtTMQueryResolvers } from "./courts/courts-tv.resolvers";
+import { ownerTMMutationResolvers, ownerTMQueryResolvers } from "./owner/owner-tv.resolvers";
+import { photosTMMutationResolvers, photosTMQueryResolvers } from "./photos/photos-tv.resolvers";
 
 export const tournamentVenueQueryResolvers = {
-    owners: async (_, __, { dataSources }: ContextValue) => {
-        return dataSources.tournamentVenueApi.getOwners();
-    },
-    owner: async (_, { id }, { dataSources }: ContextValue) => {
-        return dataSources.tournamentVenueApi.getOwner(id);
-    },
-    ownerByVenueId: async (_, { venueId }, { dataSources }: ContextValue) => {
-        return dataSources.tournamentVenueApi.getOwnerByVenueId(venueId);
-    }
+    ...ownerTMQueryResolvers,
+    ...courtTMQueryResolvers,
+    ...photosTMQueryResolvers,
 }
 
 export const tournamentVenueMutationResolvers = {
-    addOwner: async (_, { venueId, userId }, { dataSources }: ContextValue) => {
-        return dataSources.tournamentVenueApi.addOwner(venueId, userId);
-    },
-    deleteOwner: async (_, { id }, { dataSources }: ContextValue) => {
-        return dataSources.tournamentVenueApi.deleteOwner(id);
-    }
+    ...ownerTMMutationResolvers,
+    ...courtTMMutationResolvers,
+    ...photosTMMutationResolvers,
 }
