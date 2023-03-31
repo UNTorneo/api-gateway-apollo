@@ -1,9 +1,10 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
-import { RequestResponse, ErrorResponse, SucessResponse } from '../../core/interfaces/base-interfaces';
+import { RequestResponse } from '../../core/interfaces/base-interfaces';
 import { Owner } from './owner/owner.interfaces';
 import { AddCourt, Court, UpdateCourt } from './courts/courts.interfaces';
 import { AddPhoto, Photo, UpdatePhoto } from './photos/photos.interfaces';
 import { AddSchedule, Schedule, UpdateSchedule } from './schedule/schedule.interfaces';
+import { AddVenue, UpdateVenue, Venue } from './venue/venue.interfaces';
 
 export class TournamentVenueApi extends RESTDataSource {
     override baseURL = 'http://localhost:8080/';
@@ -113,5 +114,30 @@ export class TournamentVenueApi extends RESTDataSource {
 
     async updateSchedule(id: Number, schedule: UpdateSchedule): Promise<RequestResponse> {
         return this.put<RequestResponse>(`schedule?id=${id}`, { body: schedule });
+    }
+
+    //Venue
+    // Querys
+    async getVenues(): Promise<Venue[]> {
+        return this.get<Venue[]>(`venue`);
+    }
+    async getVenue(id: Number): Promise<Venue[]> {
+        return this.get<Venue[]>(`venue?id=${id}`);
+    }
+    async getVenuesByUserId(venueId: Number): Promise<Venue[]> {
+        return this.get<Venue[]>(`venue?venueId=${venueId}`);
+    }
+
+    // Mutations
+    async addVenue(venue: AddVenue): Promise<RequestResponse> {
+        return this.post<RequestResponse>(`venue`, { body: venue });
+    }
+
+    async deleteVenue(id: Number): Promise<RequestResponse> {
+        return this.delete<RequestResponse>(`venue?id=${id}`);
+    }
+
+    async updateVenue(id: Number, venue: UpdateVenue): Promise<RequestResponse> {
+        return this.put<RequestResponse>(`venue?id=${id}`, { body: venue });
     }
 }
