@@ -3,6 +3,7 @@ import { RequestResponse, ErrorResponse, SucessResponse } from '../../core/inter
 import { Owner } from './owner/owner.interfaces';
 import { AddCourt, Court, UpdateCourt } from './courts/courts.interfaces';
 import { AddPhoto, Photo, UpdatePhoto } from './photos/photos.interfaces';
+import { AddSchedule, Schedule, UpdateSchedule } from './schedule/schedule.interfaces';
 
 export class TournamentVenueApi extends RESTDataSource {
     override baseURL = 'http://localhost:8080/';
@@ -39,7 +40,6 @@ export class TournamentVenueApi extends RESTDataSource {
     //Courts
     // Querys
     async getCourts(): Promise<Court[]> {
-        console.log('Getting courts');
         return this.get<Court[]>(`court`);
     }
     async getCourt(id: Number): Promise<Court[]> {
@@ -68,7 +68,6 @@ export class TournamentVenueApi extends RESTDataSource {
     //Photos
     // Querys
     async getPhotos(): Promise<Photo[]> {
-        console.log('Getting courts');
         return this.get<Photo[]>(`photo`);
     }
     async getPhoto(id: Number): Promise<Photo[]> {
@@ -89,5 +88,30 @@ export class TournamentVenueApi extends RESTDataSource {
 
     async updatePhoto(id: Number, photo: UpdatePhoto): Promise<RequestResponse> {
         return this.put<RequestResponse>(`photo?id=${id}`, { body: photo });
+    }
+
+    //Schedule
+    // Querys
+    async getSchedules(): Promise<Schedule[]> {
+        return this.get<Schedule[]>(`schedule`);
+    }
+    async getSchedule(id: Number): Promise<Schedule[]> {
+        return this.get<Schedule[]>(`schedule?id=${id}`);
+    }
+    async getSchedulesByCourtId(venueId: Number): Promise<Schedule[]> {
+        return this.get<Schedule[]>(`schedule?venueId=${venueId}`);
+    }
+
+    // Mutations
+    async addSchedule(schedule: AddSchedule): Promise<RequestResponse> {
+        return this.post<RequestResponse>(`schedule`, { body: schedule });
+    }
+
+    async deleteSchedule(id: Number): Promise<RequestResponse> {
+        return this.delete<RequestResponse>(`schedule?id=${id}`);
+    }
+
+    async updateSchedule(id: Number, schedule: UpdateSchedule): Promise<RequestResponse> {
+        return this.put<RequestResponse>(`schedule?id=${id}`, { body: schedule });
     }
 }
