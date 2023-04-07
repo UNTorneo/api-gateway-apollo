@@ -7,8 +7,8 @@ export const clansQueryResolvers = {
     clanById: async (_, { id }, { dataSources }: ContextValue) => {
         return dataSources.clanApi.getClanById(id);
     },
-    usersByClanId: async (_, { id }, { dataSources }: ContextValue) => {
-        return dataSources.clanApi.getUsersByClanId(id);
+    usersByClanId: async (_, { clanIdToFind }, { dataSources }: ContextValue) => {
+        return dataSources.clanApi.getUsersByClanId(clanIdToFind);
     }
 }
 

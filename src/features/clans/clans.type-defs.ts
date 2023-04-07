@@ -1,9 +1,9 @@
 export const clansTypesDef = `#graphql
     type Clan {
         id: Int!
-        leaderId: Int! 
+        leaderId: Int
         name: String!
-        createdAt: Date!
+        createdAt: String!
     }
     type UsersClan {
         id: Int!
@@ -14,14 +14,13 @@ export const clansTypesDef = `#graphql
 
 export const clansQuerysDef = `#graphql
         clans: [Clan]
-        clans(id: Int!): Clan
         clanById(id: Int!): Clan
-        usersByClanId(clanId: Int!): UsersClan
+        usersByClanId(clanIdToFind: Int!): [UsersClan]
 `;
 
 export const clansMutationsDef = `#graphql
-    createClan(leaderId: Int!, name: String!, createdAt: Date!): RequestResponse
-    updateClan(id: Int!, leaderId: Int!, name: String!): RequestResposne
+    createClan(leaderId: Int!, name: String!, createdAt: String!): RequestResponse
+    updateClan(id: Int!, leaderId: Int!, name: String!): RequestResponse
     deleteClan(id: Int!): RequestResponse
     addUserToClan(clanId: Int!, userId: Int!): RequestResponse
 `;
