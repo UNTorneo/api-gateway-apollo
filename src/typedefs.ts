@@ -1,19 +1,23 @@
 import { baseTypesDef } from "./core/graphql/base-responses";
 import { sportTypesDef, sportsMutationsDef, sportsQuerysDef } from "./features/sports/sports.type-defs";
 import { tournamentVenueMutationsDef, tournamentVenueQuerysDef, tournamentVenueTypesDef } from "./features/tournament-venue/tournament-venue.type-defs";
+import { tournamentsMutationsDef, tournamentsTypesDef, tournamentsQuerysDef } from './features/tournaments/tournaments.type-defs';
 
 const typeDef: String[] = [
     baseTypesDef,
     tournamentVenueTypesDef,
     sportTypesDef,
+    tournamentsTypesDef,
 ]
 const queryDef: String[] = [
     tournamentVenueQuerysDef,
-    sportsQuerysDef
+    sportsQuerysDef,
+    tournamentsQuerysDef,
 ]
 const mutationDef: String[] = [
     tournamentVenueMutationsDef,
-    sportsMutationsDef
+    sportsMutationsDef,
+    tournamentsMutationsDef,
 ]
 
 

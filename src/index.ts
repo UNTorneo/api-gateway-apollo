@@ -1,14 +1,16 @@
-import { ApolloServer } from '@apollo/server';
+import { ApolloServer, BaseContext } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { TournamentVenueApi } from './features/tournament-venue/tournament-venue.api';
 import { resolvers } from './resolvers';
 import { typeDefs } from './typedefs';
 import { sportsApi } from './features/sports/sports.api';
-
-export interface ContextValue {
+import { TournamentApi } from './features/tournaments/tournaments.api';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+export interface ContextValue extends BaseContext{
     dataSources: {
         tournamentVenueApi: TournamentVenueApi;
         sportsApi: sportsApi;
+        tournamentApi: TournamentApi;
     };
 }
 
@@ -23,7 +25,8 @@ const { url } = await startStandaloneServer(server, {
         return {
             dataSources: {
                 tournamentVenueApi: new TournamentVenueApi({ cache }),
-                sportsApi: new sportsApi({cache})
+                sportsApi: new sportsApi({cache}),
+                tournamentApi: new TournamentApi({cache}),
             },
         };
     },
