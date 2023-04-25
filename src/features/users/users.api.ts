@@ -5,7 +5,7 @@ import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
-    override baseURL = 'http://127.0.0.1:8080/';
+    override baseURL = process.env.URL_MS_USERS;
 
     //Users
     //Querys
