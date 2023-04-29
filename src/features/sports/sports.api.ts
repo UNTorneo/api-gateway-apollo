@@ -3,7 +3,7 @@ import { RequestResponse, ErrorResponse, SucessResponse } from '../../core/inter
 import { Sport } from './sport/sport.interfaces';
 import { Mode } from './mode/mode.interfaces'
 export class sportsApi extends RESTDataSource{
-    override baseURL = 'http://127.0.0.1:3000/';
+    override baseURL = process.env.URL_MS_SPORTS;
 
     async getSport(id:String): Promise<Sport>{
         try{

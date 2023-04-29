@@ -5,7 +5,7 @@ import { Clan } from './clan.interfaces';
 import { ClanUser } from '../clans/clans_user/clan_user.interface';
 
 export class ClanApi extends RESTDataSource {
-    override baseURL = 'http://localhost:3000/';
+    override baseURL = process.env.URL_MS_CLANS;
 
     async getClans(): Promise<Clan[]> {
         try {

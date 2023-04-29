@@ -10,7 +10,7 @@ const agent = new https.Agent({
 })
 
 export class TournamentApi extends RESTDataSource {
-    override baseURL = 'https://127.0.0.1:32770/';
+    override baseURL = process.env.URL_MS_TOURNAMENTS;
 
     // constructor() {
     //     super((input, init) => {
