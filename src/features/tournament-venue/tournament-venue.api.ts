@@ -7,7 +7,7 @@ import { AddSchedule, Schedule, UpdateSchedule } from './schedule/schedule.inter
 import { AddVenue, UpdateVenue, Venue } from './venue/venue.interfaces';
 
 export class TournamentVenueApi extends RESTDataSource {
-    override baseURL = 'http://localhost:8080/';
+    override baseURL = process.env.URL_MS_TOURNAMENT_VENUE;
 
     //Owners
     //Querys

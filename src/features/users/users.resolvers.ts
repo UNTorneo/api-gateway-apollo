@@ -39,11 +39,11 @@ export const usersQueryResolvers = {
 }
 
 export const usersMutationResolvers = {
-    addUser: async (_, { username, birthday, email, password, country_id, city_id, latitude, longitude, is_active }, { dataSources }: ContextValue) => {
-        return await dataSources.usersApi.addUser(username, birthday, email, password, country_id, city_id, latitude, longitude, is_active);
+    addUser: async (_, { username, birthday, email, password, countryId, cityId, latitude, longitude}, { dataSources }: ContextValue) => {
+        return await dataSources.usersApi.addUser(username, birthday, email, password, countryId, cityId, latitude, longitude);
     },
-    updateUser: async (_, { id, username, birthday, email, password, country_id, city_id, latitude, longitude, is_active }, { dataSources }: ContextValue) => {
-        return await dataSources.usersApi.updateUser(id, username, birthday, email, password, country_id, city_id, latitude, longitude, is_active);
+    updateUser: async (_, { id, username, birthday, email, password, countryId, cityId, latitude, longitude}, { dataSources }: ContextValue) => {
+        return await dataSources.usersApi.updateUser(id, username, birthday, email, password, countryId, cityId, latitude, longitude);
     },
     deleteUser: async (_, { id }, { dataSources }: ContextValue) => {
         return dataSources.usersApi.deleteUser(id);

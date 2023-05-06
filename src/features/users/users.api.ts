@@ -35,19 +35,19 @@ export class UsersApi extends RESTDataSource {
     
     //Mutations
 
-    async addUser(username : String, birthday : Date, email: String, password : String, country_id : Number, city_id : Number, latitude : Number, longitude : Number, is_active : Boolean): Promise<RequestResponse>{
+    async addUser(username : String, birthday : Date, email: String, password : String, countryId : Number, cityId : Number, latitude : Number, longitude : Number): Promise<RequestResponse>{
         try{
             console.log(`addUser`);
-            return await this.post<RequestResponse>(`users`,{body:{username,birthday,email, password,country_id,city_id,latitude,longitude,is_active}});
+            return await this.post<RequestResponse>(`users`,{body:{username,birthday,email, password,countryId,cityId,latitude,longitude}});
         }catch(error){
             console.log(error);
         }
     }
 
-    async updateUser(id : Number, username : String, birthday : Date, email: String, password : String, country_id : Number, city_id : Number, latitude : Number, longitude : Number, is_active : Boolean): Promise<RequestResponse>{
+    async updateUser(id : Number, username : String, birthday : Date, email: String, password : String, countryId : Number, cityId : Number, latitude : Number, longitude : Number): Promise<RequestResponse>{
         try{
-            console.log(`addUser`);
-            return await this.put<RequestResponse>(`users/${id}`,{body:{username,birthday,email, password,country_id,city_id,latitude,longitude,is_active}});
+            console.log(`updateUser`);
+            return await this.put<RequestResponse>(`users/${id}`,{body:{username,birthday,email, password,countryId,cityId,latitude,longitude}});
         }catch(error){
             console.log(error);
         }
@@ -101,7 +101,7 @@ export class UsersApi extends RESTDataSource {
 
     async updateCity(id : Number, name : String): Promise<RequestResponse>{
         try{
-            console.log(`addCity`);
+            console.log(`updateCity`);
             return await this.put<RequestResponse>(`cities/${id}`,{body:{name}});
         }catch(error){
             console.log(error);
@@ -156,7 +156,7 @@ export class UsersApi extends RESTDataSource {
 
     async updateCountry(id : Number, name : String): Promise<RequestResponse>{
         try{
-            console.log(`addCountry`);
+            console.log(`updateCountry`);
             return await this.put<RequestResponse>(`countries/${id}`,{body:{name}});
         }catch(error){
             console.log(error);
