@@ -1,6 +1,6 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 import { RequestResponse } from '../../core/interfaces/base-interfaces';
-import { Owner } from './owner/owner.interfaces';
+import { Owner, OwnerPopulated } from './owner/owner.interfaces';
 import { AddCourt, Court, UpdateCourt } from './courts/courts.interfaces';
 import { AddPhoto, Photo, UpdatePhoto } from './photos/photos.interfaces';
 import { AddSchedule, Schedule, UpdateSchedule } from './schedule/schedule.interfaces';
@@ -16,14 +16,14 @@ export class TournamentVenueApi extends RESTDataSource {
         return this.get<Owner[]>(`owner`);
     }
 
-    async getOwner(id: number): Promise<Owner> {
+    async getOwner(id: number): Promise<OwnerPopulated> {
         console.log(`getOwner: ${id}`);
-        return this.get<Owner>(`owner?id=${id}`);
+        return this.get<OwnerPopulated>(`owner?id=${id}`);
     }
 
-    async getOwnerByVenueId(venueId: number): Promise<Owner> {
+    async getOwnerByVenueId(venueId: number): Promise<OwnerPopulated> {
         console.log(`getOwnerByVenueId: ${venueId}`);
-        return this.get<Owner>(`owner?venueId=${venueId}`);
+        return this.get<OwnerPopulated>(`owner?venueId=${venueId}`);
     }
 
     //Mutations
