@@ -4,12 +4,26 @@ export const ownerTVTypesDef = `#graphql
         venueId: Int! 
         userId: String!
     }
+
+    type UserOwner {
+        username: String!
+        birthday: String!
+        email: String!
+        id: Int!,
+        isActive: Boolean!,
+    }
+
+    type OwnerPopulated {
+        id: Int!
+        venueId: Int! 
+        user: UserOwner!
+    }
 `;
 
 export const ownerTVQuerysDef = `#graphql
         owners: [Owner]
-        owner(id: Int!): Owner
-        ownerByVenueId(venueId: Int!): Owner
+        owner(id: Int!): OwnerPopulated
+        ownerByVenueId(venueId: Int!): OwnerPopulated
 `;
 
 export const ownerTVMutationsDef = `#graphql
