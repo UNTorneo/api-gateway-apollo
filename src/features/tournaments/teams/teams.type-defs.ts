@@ -22,8 +22,8 @@ export const teamsTypesDef = `#graphql
         clanId: String
         members: [TeamUser]!
         tournaments: [String]!
-        createdAt: Date!
-        updatedAt: Date!
+        createdAt: String!
+        updatedAt: String!
     }
 
     input AddTeam {
