@@ -9,6 +9,23 @@ export const teamsTypesDef = `#graphql
         updatedAt: String!
     }
 
+    export interface TeamUser {
+        username: String!
+        birthday: String!
+        email: String!
+        id: Int!
+    }
+
+    export interface TeamUserPopulated {
+        id: String!
+        name: String!
+        clanId: String
+        members: [TeamUser]!
+        tournaments: [String]!
+        createdAt: Date!
+        updatedAt: Date!
+    }
+
     input AddTeam {
         name: String!
         clanId: String
@@ -26,7 +43,7 @@ export const teamsTypesDef = `#graphql
 
 export const teamsQuerysDef = `#graphql
     getTeams: [Team]
-    getTeam(id: String!): Team
+    getTeam(id: String!): TeamUserPopulated
 `;
 
 export const teamsMutationsDef = `#graphql
