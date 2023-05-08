@@ -9,14 +9,14 @@ export const teamsTypesDef = `#graphql
         updatedAt: String!
     }
 
-    export interface TeamUser {
+    type TeamUser {
         username: String!
         birthday: String!
         email: String!
         id: Int!
     }
 
-    export interface TeamUserPopulated {
+    type TeamUserPopulated {
         id: String!
         name: String!
         clanId: String
