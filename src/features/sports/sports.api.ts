@@ -3,11 +3,11 @@ import { RequestResponse, ErrorResponse, SucessResponse } from '../../core/inter
 import { Sport } from './sport/sport.interfaces';
 import { Mode } from './mode/mode.interfaces'
 export class sportsApi extends RESTDataSource{
-    override baseURL = process.env.URL_MS_SPORTS;
+    override baseURL = process.env.URL_MS_SPORTS+"/";
 
     async getSport(id:String): Promise<Sport>{
         try{
-            console.log(`getSport`);
+            console.log(this.baseURL+`getSport`);
             const res = await this.get<Sport>(`sport/${id}`); 
             console.log(res);
             return res;
@@ -18,7 +18,7 @@ export class sportsApi extends RESTDataSource{
 
     async getSports(): Promise<Sport[]>{
         try{
-            console.log(`getSports`);
+            console.log(this.baseURL+`getSports`);
             const res = await this.get<Sport[]>(`sport/all`); 
             console.log(res);
             return res;

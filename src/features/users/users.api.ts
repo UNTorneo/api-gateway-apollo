@@ -5,7 +5,7 @@ import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_USERS;
+    override baseURL = process.env.URL_MS_USERS+'/';
 
     //Users
     //Querys
@@ -147,7 +147,8 @@ export class UsersApi extends RESTDataSource {
 
     async addCountry(name : String): Promise<RequestResponse>{
         try{
-            console.log(`addCountry`);
+            console.log(`addCountry`,name);
+
             return await this.post<RequestResponse>(`countries`,{body:{name}});
         }catch(error){
             console.log(error);
