@@ -1,5 +1,19 @@
 import { ContextValue } from "../..";
 
+export const tokenResolver = {
+    TokenResponse: {
+        __resolveType(obj, contextValue, info) {
+            if (obj.accessToken) {
+                return 'RequestToken';
+            }
+            if (obj.error) {
+                return 'ErrorResponse';
+            }
+            return null; // GraphQLError is thrown
+        },
+    },
+}
+
 export const usersQueryResolvers = {
     user: async (_, { id }, { dataSources }: ContextValue) => {
         const res =  dataSources.usersApi.getUser(id);

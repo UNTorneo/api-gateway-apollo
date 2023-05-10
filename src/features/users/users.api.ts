@@ -1,12 +1,13 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 import { RequestResponse } from '../../core/interfaces/base-interfaces';
+import { TokenResponse } from './token/token.interfaces';
 import { User } from './user/users.interfaces';
 import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
     override baseURL = process.env.URL_MS_USERS;
-    protected override throwIfResponseIsError(options): Promise<void> {
+   protected override throwIfResponseIsError(options): Promise<void> {
         console.log('UsersApi throwIfResponseIsError: ', options);
         return;
     }
@@ -14,10 +15,10 @@ export class UsersApi extends RESTDataSource {
     //Login
     //Mutations
 
-    async login(email: String, password : String): Promise<RequestResponse>{
+    async login(email: String, password : String): Promise<TokenResponse>{
         try{
             console.log(`login`);
-            return this.post<RequestResponse>(`login`,{body:{email, password}});
+            return this.post<TokenResponse>(`login`,{body:{email, password}});
         }catch(error){
             console.log(error);
         }
@@ -118,7 +119,9 @@ export class UsersApi extends RESTDataSource {
     async updateCity(id: Number, name: String): Promise<RequestResponse> {
         try {
             console.log(`updateCity`);
-            return await this.put<RequestResponse>(`cities/${id}`, { body: { name } });
+            const res = await this.put<RequestResponse>(`cities/${id}`, { body: { name } });
+            console.log(res);
+            return res;
         } catch (error) {
             console.log(error);
         }
