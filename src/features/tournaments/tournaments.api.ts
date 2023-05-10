@@ -121,4 +121,12 @@ export class TournamentApi extends RESTDataSource {
     async deleteMatch(id: String): Promise<RequestResponse> {
         return this.delete<RequestResponse>(`api/Match/${id}`);
     }
+
+    async startMatch(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Match/start-match/${id}`);
+    }
+
+    async endMatch(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Match/end-match/${id}`);
+    }
 }

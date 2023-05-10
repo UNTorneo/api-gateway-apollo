@@ -26,4 +26,10 @@ export const matchesMutationResolvers = {
     updateMatch:async (_, {id, match}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateMatch(id, match);
     },
+    startMatch:async (_, {id}, {dataSources}: ContextValue) => {
+        return dataSources.tournamentApi.startMatch(id);
+    },
+    endMatch:async (_, {id}, {dataSources}: ContextValue) => {
+        return dataSources.tournamentApi.endMatch(id);
+    },
 }

@@ -30,5 +30,5 @@ export const tournamentMutationResolvers = {
     },
     endTournament:async (_, {id}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.endTournament(id);
-    }
+    },
 }
