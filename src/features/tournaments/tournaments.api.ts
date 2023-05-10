@@ -48,6 +48,14 @@ export class TournamentApi extends RESTDataSource {
         return this.delete<RequestResponse>(`api/Tournament/${id}`);
     }
 
+    async startTournament(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Tournament/start-tournament/${id}`);
+    }
+
+    async endTournament(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Tournament/end-tournament/${id}`);
+    }
+
     //* Teams
     // Queries
     async getTeams(): Promise<Team[]> {

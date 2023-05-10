@@ -50,4 +50,6 @@ export const tournamentMutationsDef = `#graphql
     addTournament(tournament: AddTournament): RequestResponse
     deleteTournament(id: String!): RequestResponse
     updateTournament(id: String!, tournament: UpdateTournament!): RequestResponse
+    startTournament(id: String!): RequestResponse
+    endTournament(id: String!): RequestResponse
 `;
