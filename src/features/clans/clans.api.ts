@@ -6,11 +6,15 @@ import { ClanUser } from '../clans/clans_user/clan_user.interface';
 
 export class ClanApi extends RESTDataSource {
     override baseURL = process.env.URL_MS_CLANS;
+    protected override throwIfResponseIsError(options): Promise<void> {
+        console.log('ClanApi throwIfResponseIsError: ', options);
+        return;
+    }
 
     async getClans(): Promise<Clan[]> {
         try {
             console.log(`get clans`);
-            const res = await  this.get<Clan[]>(`clans`);
+            const res = await this.get<Clan[]>(`clans`);
             console.log(res);
             return res
         } catch (error) {
@@ -26,14 +30,14 @@ export class ClanApi extends RESTDataSource {
 
     async createClan(name: String, leaderId: number, createdAt: String): Promise<RequestResponse> {
         console.log(`create clan: ${leaderId}, ${name}, ${createdAt}`);
-        const res = await this.post<RequestResponse>(`clans`, {body: {leaderId, name, createdAt}});
+        const res = await this.post<RequestResponse>(`clans`, { body: { leaderId, name, createdAt } });
         console.log(res);
         return res;
     }
 
     async updateClan(id: number, leaderId: number, name: String): Promise<RequestResponse> {
         console.log(`update clan with ${id}: ${leaderId}, ${name}`);
-        const res = await this.put<RequestResponse>(`clans/${id}`, {body: {leaderId, name}});
+        const res = await this.put<RequestResponse>(`clans/${id}`, { body: { leaderId, name } });
         return res;
     }
 
@@ -50,7 +54,7 @@ export class ClanApi extends RESTDataSource {
 
     async addUserToClan(clanId: number, userId: number): Promise<RequestResponse> {
         console.log(`add user ${userId} to clan ${clanId}`);
-        const res = await this.post<RequestResponse>(`clans/users/${clanId}`, {body: {userId}});
+        const res = await this.post<RequestResponse>(`clans/users/${clanId}`, { body: { userId } });
         return res;
     }
 }

@@ -5,13 +5,12 @@ import { Team, AddTeam, UpdateTeam, TeamUserPopulated } from './teams/teams.inte
 import { Match, AddMatch, UpdateMatch } from './matches/matches.interfaces';
 import https from "https";
 
-const agent = new https.Agent({
-    rejectUnauthorized: false
-})
-
 export class TournamentApi extends RESTDataSource {
     override baseURL = process.env.URL_MS_TOURNAMENTS;
-
+    protected override throwIfResponseIsError(options): Promise<void> {
+        console.log('TournamentApi throwIfResponseIsError: ', options);
+        return;
+    }
     //* Tournaments
     // Queries
     async getTournaments(): Promise<Tournament[]> {

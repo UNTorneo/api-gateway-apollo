@@ -12,10 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@apollo/datasource-rest": "5.0.2",
-    "@apollo/server": "4.5.0",
+    "@apollo/datasource-rest": "^5.0.2",
+    "@apollo/server": "^4.5.0",
     "dotenv": "^16.0.3",
-    "graphql": "16.6.0"
+    "graphql": "^16.6.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",
