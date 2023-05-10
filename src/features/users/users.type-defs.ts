@@ -1,4 +1,10 @@
 export const userTypesDef = `#graphql
+
+    type Login{
+        email: String!
+        password: String!
+    }
+
     type User{
         id: Int!
         username: String!
@@ -35,7 +41,10 @@ export const usersQuerysDef = `#graphql
 `;
 
 export const usersMutationsDef = `#graphql
-    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!,): RequestResponse
+
+    login(email: String!,password: String!): RequestResponse
+
+    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!): RequestResponse
     updateUser(id: Int!,username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!): RequestResponse
     deleteUser(id: Int!): RequestResponse
 

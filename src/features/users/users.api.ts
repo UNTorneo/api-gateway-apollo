@@ -5,10 +5,22 @@ import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_USERS + '/';
+    override baseURL = process.env.URL_MS_USERS;
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('UsersApi throwIfResponseIsError: ', options);
         return;
+    }
+
+    //Login
+    //Mutations
+
+    async login(email: String, password : String): Promise<RequestResponse>{
+        try{
+            console.log(`login`);
+            return this.post<RequestResponse>(`login`,{body:{email, password}});
+        }catch(error){
+            console.log(error);
+        }
     }
 
     //Users

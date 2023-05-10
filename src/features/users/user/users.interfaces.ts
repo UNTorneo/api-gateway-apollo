@@ -4,9 +4,9 @@ export interface User {
     birthday : Date
     email: String
     password : String
-    country_id : Number
-    city_id : Number
+    countryId : Number
+    cityId : Number
     latitude : Number
     longitude : Number
-    is_active : Boolean
+    isActive : Boolean
 }
