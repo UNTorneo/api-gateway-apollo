@@ -4,6 +4,8 @@ import { sportsMutationResolvers, sportsQueryResolvers } from "./features/sports
 import { tournamentVenueMutationResolvers, tournamentVenueQueryResolvers } from "./features/tournament-venue/tournament-venue.resolvers";
 import { clansMutationResolvers, clansQueryResolvers } from "./features/clans/clans.resolvers";
 import { tournamentsMutationResolvers, tournamentsQueryResolvers } from './features/tournaments/tournaments.resolvers';
+import { chatsQueryResolvers } from "./features/chats/chats.resolvers";
+
 
 export const resolvers = {
     ...baseResolver,
@@ -14,6 +16,7 @@ export const resolvers = {
         ...usersQueryResolvers,
         ...clansQueryResolvers,
         ...tournamentsQueryResolvers,
+        ...chatsQueryResolvers,
     },
     Mutation: {
         ...tournamentVenueMutationResolvers,

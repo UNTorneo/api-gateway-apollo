@@ -9,6 +9,7 @@ import { UsersApi } from './features/users/users.api';
 import { TournamentApi } from './features/tournaments/tournaments.api';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import winston from 'winston';
+import { ChatApi } from './features/chats/chats.api';
 dotenv.config()
 
 export interface ContextValue {
@@ -18,6 +19,7 @@ export interface ContextValue {
         usersApi: UsersApi;
         clanApi: ClanApi;
         tournamentApi: TournamentApi;
+        chatsApi: ChatApi;
     };
 }
 
@@ -41,6 +43,7 @@ const { url } = await startStandaloneServer(server, {
                 usersApi: new UsersApi({ cache, logger }),
                 clanApi: new ClanApi({ cache, logger }),
                 tournamentApi: new TournamentApi({ cache, logger }),
+                chatsApi: new ChatApi({ cache, logger})
             },
         };
     },

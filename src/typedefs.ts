@@ -4,6 +4,7 @@ import { sportTypesDef, sportsMutationsDef, sportsQuerysDef } from "./features/s
 import { tournamentVenueMutationsDef, tournamentVenueQuerysDef, tournamentVenueTypesDef } from "./features/tournament-venue/tournament-venue.type-defs";
 import { clansTypesDef, clansQuerysDef, clansMutationsDef } from "./features/clans/clans.type-defs";
 import { tournamentsMutationsDef, tournamentsTypesDef, tournamentsQuerysDef } from './features/tournaments/tournaments.type-defs';
+import { chatsQuerysDef, chatsTypesDef } from "./features/chats/chats.type-defs";
 
 const typeDef: String[] = [
     baseTypesDef,
@@ -11,6 +12,7 @@ const typeDef: String[] = [
     sportTypesDef,
     userTypesDef,
     clansTypesDef,
+    chatsTypesDef,
     tournamentsTypesDef,
 ]
 const queryDef: String[] = [
@@ -18,6 +20,7 @@ const queryDef: String[] = [
     sportsQuerysDef,
     usersQuerysDef,
     clansQuerysDef,
+    chatsQuerysDef,
     tournamentsQuerysDef,
 ]
 const mutationDef: String[] = [
