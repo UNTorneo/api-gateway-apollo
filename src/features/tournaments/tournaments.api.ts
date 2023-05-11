@@ -6,7 +6,7 @@ import { Match, AddMatch, UpdateMatch } from './matches/matches.interfaces';
 import https from "https";
 
 export class TournamentApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_TOURNAMENTS;
+    override baseURL = process.env.URL_MS_TOURNAMENTS+'/';
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('TournamentApi throwIfResponseIsError: ', options);
         return;
