@@ -5,7 +5,7 @@ import { Clan } from './clan.interfaces';
 import { ClanUser } from '../clans/clans_user/clan_user.interface';
 
 export class ClanApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_CLANS;
+    override baseURL = process.env.URL_MS_CLANS+'/';
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('ClanApi throwIfResponseIsError: ', options);
         return;

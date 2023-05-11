@@ -27,6 +27,7 @@ export const sportsQuerysDef = `#graphql
     sport(id: String!): Sport
     sports: [Sport] 
     modes(sportId: String!): [Mode]
+    mode(id: String!): Mode
 `;
 
 export const sportsMutationsDef = `#graphql

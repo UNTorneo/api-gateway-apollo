@@ -78,6 +78,17 @@ export class sportsApi extends RESTDataSource {
         }
     }
 
+    async getMode(modeId: String): Promise<Mode> {
+        try {
+            console.log(`getMode`);
+            const res = await this.get<Mode>(`mode/${modeId}/mode`);
+            console.log(res);
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async getModes(sportId: String): Promise<Mode[]> {
         try {
             console.log(`getMode`);

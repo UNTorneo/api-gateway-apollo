@@ -14,6 +14,54 @@ export const tournamentTypesDef = `#graphql
         updatedAt: String!
     }
 
+    type TournamentSport{
+        _id: String!
+        name: String!
+        modes: [String]
+        description: String!
+        recommendation: [String]
+    }
+
+    type TournamentMode{
+        _id: String!
+        sportId: String!
+        name: String!
+        winningPoints: Int
+        teamsNumber:Int
+        playersPerTeam: Int
+        description: String
+        substitutePlayers: Int
+    }
+
+    type TournamentClan {
+        id: Int!
+        leaderId: Int
+        name: String!
+        createdAt: String!
+    }
+
+    type TournamentVenue {
+        id: Int!
+        location: String!
+        description: String!
+        isActive: Boolean!
+    }
+
+    type TournamentPopulated {
+        id: String!
+        name: String!
+        teams: [String]!
+        sportId: TournamentSport!
+        modeId: TournamentMode!
+        clanId: TournamentClan
+        venueId: TournamentVenue
+        venueName: String
+        access: String!
+        status: String!
+        createdAt: String!
+        updatedAt: String!
+    }
+
     input AddTournament {
         name: String!
         teams: [String]!
@@ -41,7 +89,7 @@ export const tournamentTypesDef = `#graphql
 
 export const tournamentQuerysDef = `#graphql
     getTournaments: [Tournament]
-    getTournament(id: String!): Tournament
+    getTournament(id: String!): TournamentPopulated
     getTournamentsInProgress: [Tournament]
     getTournamentsByStatus(status: String!): [Tournament]
 `;
