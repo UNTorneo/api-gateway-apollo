@@ -13,6 +13,13 @@ export const sportsQueryResolvers = {
         return res;
     },
 
+    mode:async (_, {id}, { dataSources }: ContextValue) => {
+        const res = await dataSources.sportsApi.getMode(id);
+        console.log(res);
+        return res;
+    },
+    
+
     modes: async (_, {sportId}, { dataSources }: ContextValue) => {
         const res = await dataSources.sportsApi.getModes(sportId);
         console.log(res);

@@ -5,13 +5,12 @@ import { Team, AddTeam, UpdateTeam, TeamUserPopulated } from './teams/teams.inte
 import { Match, AddMatch, UpdateMatch } from './matches/matches.interfaces';
 import https from "https";
 
-const agent = new https.Agent({
-    rejectUnauthorized: false
-})
-
 export class TournamentApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_TOURNAMENTS;
-
+    override baseURL = process.env.URL_MS_TOURNAMENTS+'/';
+    protected override throwIfResponseIsError(options): Promise<void> {
+        console.log('TournamentApi throwIfResponseIsError: ', options);
+        return;
+    }
     //* Tournaments
     // Queries
     async getTournaments(): Promise<Tournament[]> {
@@ -47,6 +46,14 @@ export class TournamentApi extends RESTDataSource {
 
     async deleteTournament(id: String): Promise<RequestResponse> {
         return this.delete<RequestResponse>(`api/Tournament/${id}`);
+    }
+
+    async startTournament(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Tournament/start-tournament/${id}`);
+    }
+
+    async endTournament(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Tournament/end-tournament/${id}`);
     }
 
     //* Teams
@@ -113,5 +120,13 @@ export class TournamentApi extends RESTDataSource {
 
     async deleteMatch(id: String): Promise<RequestResponse> {
         return this.delete<RequestResponse>(`api/Match/${id}`);
+    }
+
+    async startMatch(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Match/start-match/${id}`);
+    }
+
+    async endMatch(id: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Match/end-match/${id}`);
     }
 }

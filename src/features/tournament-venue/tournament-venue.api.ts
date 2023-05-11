@@ -1,14 +1,22 @@
-import { RESTDataSource } from '@apollo/datasource-rest';
+import { RESTDataSource, RequestOptions } from '@apollo/datasource-rest';
 import { RequestResponse } from '../../core/interfaces/base-interfaces';
 import { Owner, OwnerPopulated } from './owner/owner.interfaces';
 import { AddCourt, Court, UpdateCourt } from './courts/courts.interfaces';
 import { AddPhoto, Photo, UpdatePhoto } from './photos/photos.interfaces';
 import { AddSchedule, Schedule, UpdateSchedule } from './schedule/schedule.interfaces';
 import { AddVenue, UpdateVenue, Venue } from './venue/venue.interfaces';
+import { FetcherResponse } from '@apollo/utils.fetcher';
 
 export class TournamentVenueApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_TOURNAMENT_VENUE;
-
+    override baseURL = process.env.URL_MS_TOURNAMENT_VENUE+'/';
+    protected override throwIfResponseIsError(options): Promise<void> {
+        console.log('TournamentVenueApi throwIfResponseIsError: ', options);
+        return;
+    }
+    //protected override didEncounterError(_error: Error, _request: RequestOptions): void {
+    //    console.log('TournamentVenueApi error: ', _error);
+    //    console.log('TournamentVenueApi request: ', _request);
+    //}
     //Owners
     //Querys
     async getOwners(): Promise<Owner[]> {
@@ -30,7 +38,6 @@ export class TournamentVenueApi extends RESTDataSource {
     async addOwner(venueId: number, userId: string): Promise<RequestResponse> {
         console.log(`addOwner: ${venueId}, ${userId}`);
         const res = await this.post<RequestResponse>(`owner`, { body: { venueId, userId } });
-        console.log(`addOwner: ${JSON.stringify(res)}`);
         return res;
     }
 

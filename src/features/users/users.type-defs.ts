@@ -1,10 +1,25 @@
 export const userTypesDef = `#graphql
+
+    type Login{
+        email: String!
+        password: String!
+    }
+
+    type RequestToken {
+        accessToken: String!
+    }
+
+    type ErrorResponse {
+        error: String!
+    }
+
+    union TokenResponse = RequestToken | ErrorResponse
+
     type User{
         id: Int!
         username: String!
         birthday: String!
         email: String!
-        password: String!
         countryId: Int!
         cityId: Int!
         latitude: Float!
@@ -35,8 +50,11 @@ export const usersQuerysDef = `#graphql
 `;
 
 export const usersMutationsDef = `#graphql
-    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!,): RequestResponse
-    updateUser(id: Int!,username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!): RequestResponse
+
+    login(email: String!,password: String!): TokenResponse
+
+    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!): RequestResponse
+    updateUser(id: Int!,username: String,birthday: String,email: String,password: String ,countryId: Int,cityId: Int,latitude: Float,longitude: Float): RequestResponse
     deleteUser(id: Int!): RequestResponse
 
     addCity(name: String!): RequestResponse

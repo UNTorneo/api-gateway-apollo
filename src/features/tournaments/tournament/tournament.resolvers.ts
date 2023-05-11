@@ -25,4 +25,10 @@ export const tournamentMutationResolvers = {
     updateTournament:async (_, {id, tournament}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateTournament(id, tournament);
     },
+    startTournament:async (_, {id}, {dataSources}: ContextValue) => {
+        return dataSources.tournamentApi.startTournament(id);
+    },
+    endTournament:async (_, {id}, {dataSources}: ContextValue) => {
+        return dataSources.tournamentApi.endTournament(id);
+    },
 }

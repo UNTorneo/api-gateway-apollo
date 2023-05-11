@@ -8,8 +8,9 @@ import { sportsApi } from './features/sports/sports.api';
 import { UsersApi } from './features/users/users.api';
 import { TournamentApi } from './features/tournaments/tournaments.api';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import winston from 'winston';
+import { ChatApi } from './features/chats/chats.api';
 dotenv.config()
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export interface ContextValue {
     dataSources: {
@@ -18,6 +19,7 @@ export interface ContextValue {
         usersApi: UsersApi;
         clanApi: ClanApi;
         tournamentApi: TournamentApi;
+        chatsApi: ChatApi;
     };
 }
 
@@ -29,13 +31,19 @@ const server = new ApolloServer<ContextValue>({
 const { url } = await startStandaloneServer(server, {
     context: async () => {
         const { cache } = server;
+        const logger = winston.createLogger({
+            transports: [
+                new winston.transports.Console(),
+            ]
+        });
         return {
             dataSources: {
-                tournamentVenueApi: new TournamentVenueApi({ cache }),
-                sportsApi: new sportsApi({cache}),
-                usersApi: new UsersApi({cache}),
-                clanApi: new ClanApi({cache}),
-                tournamentApi: new TournamentApi({cache}),
+                tournamentVenueApi: new TournamentVenueApi({ cache, logger }),
+                sportsApi: new sportsApi({ cache, logger }),
+                usersApi: new UsersApi({ cache, logger }),
+                clanApi: new ClanApi({ cache, logger }),
+                tournamentApi: new TournamentApi({ cache, logger }),
+                chatsApi: new ChatApi({ cache, logger})
             },
         };
     },
