@@ -8,7 +8,7 @@ import { AddVenue, UpdateVenue, Venue } from './venue/venue.interfaces';
 import { FetcherResponse } from '@apollo/utils.fetcher';
 
 export class TournamentVenueApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_TOURNAMENT_VENUE;
+    override baseURL = process.env.URL_MS_TOURNAMENT_VENUE+'/';
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('TournamentVenueApi throwIfResponseIsError: ', options);
         return;
