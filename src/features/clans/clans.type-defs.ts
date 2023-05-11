@@ -15,7 +15,7 @@ export const clansTypesDef = `#graphql
 export const clansQuerysDef = `#graphql
         clans: [Clan]
         clanById(id: Int!): Clan
-        usersByClanId(clanIdToFind: Int!): [UsersClan]
+        usersByClanId(clanIdToFind: Int!): [User]
 `;
 
 export const clansMutationsDef = `#graphql

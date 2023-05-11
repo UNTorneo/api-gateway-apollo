@@ -3,6 +3,7 @@ import * as Express from "express";
 import { RequestResponse, ErrorResponse, SucessResponse } from '../../core/interfaces/base-interfaces';
 import { Clan } from './clan.interfaces';
 import { ClanUser } from '../clans/clans_user/clan_user.interface';
+import { User } from '../users/user/users.interfaces';
 
 export class ClanApi extends RESTDataSource {
     override baseURL = process.env.URL_MS_CLANS;
@@ -43,9 +44,9 @@ export class ClanApi extends RESTDataSource {
         return res;
     }
 
-    async getUsersByClanId(clanId: number): Promise<ClanUser> {
+    async getUsersByClanId(clanId: number): Promise<User[]> {
         console.log(`get users by clan id: ${clanId}`);
-        return this.get<ClanUser>(`clans/users/${clanId}`);
+        return this.get<User[]>(`clans/users/${clanId}`);
     }
 
     async addUserToClan(clanId: number, userId: number): Promise<RequestResponse> {
