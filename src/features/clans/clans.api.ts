@@ -50,7 +50,9 @@ export class ClanApi extends RESTDataSource {
 
     async getUsersByClanId(clanId: number): Promise<User[]> {
         console.log(`get users by clan id: ${clanId}`);
-        return this.get<User[]>(`clans/users/${clanId}`);
+        const res = await this.get<User[]>(`clans/users/${clanId}`);
+        console.log(res);
+        return res;
     }
 
     async addUserToClan(clanId: number, userId: number): Promise<RequestResponse> {
