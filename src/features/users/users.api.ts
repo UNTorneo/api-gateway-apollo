@@ -6,8 +6,8 @@ import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_USERS+'/';
-   protected override throwIfResponseIsError(options): Promise<void> {
+    override baseURL = 'http://localhost:8080/';
+    protected override throwIfResponseIsError(options): Promise<void> {
         console.log('UsersApi throwIfResponseIsError: ', options);
         return;
     }
@@ -15,11 +15,11 @@ export class UsersApi extends RESTDataSource {
     //Login
     //Mutations
 
-    async login(email: String, password : String): Promise<TokenResponse>{
-        try{
+    async login(email: String, password: String): Promise<TokenResponse> {
+        try {
             console.log(`login`);
-            return this.post<TokenResponse>(`login`,{body:{email, password}});
-        }catch(error){
+            return this.post<TokenResponse>(`login`, { body: { email, password } });
+        } catch (error) {
             console.log(error);
         }
     }
@@ -52,19 +52,19 @@ export class UsersApi extends RESTDataSource {
 
     //Mutations
 
-    async addUser(username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number): Promise<RequestResponse> {
+    async addUser(username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
         try {
             console.log(`addUser`);
-            return await this.post<RequestResponse>(`users`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude } });
+            return await this.post<RequestResponse>(`users`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
         } catch (error) {
             console.log(error);
         }
     }
 
-    async updateUser(id: Number, username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number): Promise<RequestResponse> {
+    async updateUser(id: Number, username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
         try {
             console.log(`updateUser`);
-            return await this.put<RequestResponse>(`users/${id}`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude } });
+            return await this.put<RequestResponse>(`users/${id}`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
         } catch (error) {
             console.log(error);
         }

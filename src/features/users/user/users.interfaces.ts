@@ -8,4 +8,5 @@ export interface User {
     latitude: Number
     longitude: Number
     isActive: Boolean
+    photoUrl: String
 }

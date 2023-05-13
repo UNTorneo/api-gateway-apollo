@@ -25,6 +25,7 @@ export const userTypesDef = `#graphql
         latitude: Float!
         longitude: Float!
         isActive: Boolean!
+        photoUrl: String
     }
 
     type City{
@@ -53,8 +54,8 @@ export const usersMutationsDef = `#graphql
 
     login(email: String!,password: String!): TokenResponse
 
-    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!): RequestResponse
-    updateUser(id: Int!,username: String,birthday: String,email: String,password: String ,countryId: Int,cityId: Int,latitude: Float,longitude: Float): RequestResponse
+    addUser(username: String!,birthday: String!,email: String!,password: String!,countryId: Int!,cityId: Int!,latitude: Float!,longitude: Float!, photoUrl: String): RequestResponse
+    updateUser(id: Int!,username: String,birthday: String,email: String,password: String ,countryId: Int,cityId: Int,latitude: Float,longitude: Float, photoUrl: String): RequestResponse
     deleteUser(id: Int!): RequestResponse
 
     addCity(name: String!): RequestResponse
