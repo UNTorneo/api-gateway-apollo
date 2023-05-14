@@ -52,19 +52,19 @@ export class UsersApi extends RESTDataSource {
 
     //Mutations
 
-    async addUser(username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
+    async addUser(name: String, lastName: String, username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
         try {
             console.log(`addUser`);
-            return await this.post<RequestResponse>(`users`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
+            return await this.post<RequestResponse>(`users`, { body: {name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
         } catch (error) {
             console.log(error);
         }
     }
 
-    async updateUser(id: Number, username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
+    async updateUser(id: Number, name: String, lastName: String, username: String, birthday: Date, email: String, password: String, countryId: Number, cityId: Number, latitude: Number, longitude: Number, photoUrl: String): Promise<RequestResponse> {
         try {
             console.log(`updateUser`);
-            return await this.put<RequestResponse>(`users/${id}`, { body: { username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
+            return await this.put<RequestResponse>(`users/${id}`, { body: {name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl } });
         } catch (error) {
             console.log(error);
         }

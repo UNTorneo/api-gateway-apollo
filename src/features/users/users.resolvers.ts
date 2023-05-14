@@ -57,11 +57,11 @@ export const usersMutationResolvers = {
         return dataSources.usersApi.login(email, password);
     },
 
-    addUser: async (_, { username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
-        return dataSources.usersApi.addUser(username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);
+    addUser: async (_, {name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
+        return dataSources.usersApi.addUser(name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);
     },
-    updateUser: async (_, { id, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
-        return dataSources.usersApi.updateUser(id, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);
+    updateUser: async (_, { id, name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
+        return dataSources.usersApi.updateUser(id, name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);
     },
     deleteUser: async (_, { id }, { dataSources }: ContextValue) => {
         return dataSources.usersApi.deleteUser(id);
