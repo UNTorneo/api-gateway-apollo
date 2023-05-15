@@ -13,6 +13,20 @@ export const matchesTypesDef = `#graphql
         updatedAt: String!
     }
 
+    type MatchPopulated {
+        id: String!
+        tournamentId: Tournament!
+        homeTeam: Team!
+        visitingTeam: Team!
+        homeTeamScore: Int!
+        visitingTeamScore: Int!
+        date: String!
+        courtId: String!
+        status: String!
+        createdAt: String!
+        updatedAt: String!
+    }
+
     input AddMatch {
         tournamentId: String!
         homeTeam: String!
@@ -38,7 +52,7 @@ export const matchesTypesDef = `#graphql
 
 export const matchesQuerysDef = `#graphql
     getMatches: [Match]
-    getMatch(id: String!): Match
+    getMatch(id: String!): MatchPopulated
     getTournamentMatches(tournamentId: String!): [Match]
     getTeamMatches(teamId: String!): [Match]
 `;

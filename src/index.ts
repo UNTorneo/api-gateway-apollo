@@ -11,7 +11,6 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 import winston from 'winston';
 import { ChatApi } from './features/chats/chats.api';
 dotenv.config()
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export interface ContextValue {
     dataSources: {

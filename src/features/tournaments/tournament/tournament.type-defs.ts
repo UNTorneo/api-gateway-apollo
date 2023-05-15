@@ -50,7 +50,7 @@ export const tournamentTypesDef = `#graphql
     type TournamentPopulated {
         id: String!
         name: String!
-        teams: [String]!
+        teams: [Team]!
         sportId: TournamentSport!
         modeId: TournamentMode!
         clanId: TournamentClan
