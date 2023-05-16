@@ -7,6 +7,7 @@ export const userTypesDef = `#graphql
 
     type RequestToken {
         accessToken: String!
+        user: User!
     }
 
     type ErrorResponse {
