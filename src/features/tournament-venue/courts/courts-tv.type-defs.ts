@@ -4,18 +4,21 @@ export const courtsTVTypesDef = `#graphql
         venueId: Int!
         sportId: String!
         isActive: Boolean!
+        name: String!
     }
 
     input AddCourt {
         venueId: Int!
         sportId: String!
         isActive: Boolean!
+        name: String!
     }
 
     input UpdateCourt {
-        venueId: Int,
-        sportId: String,
-        isActive: Boolean,
+        venueId: Int
+        sportId: String
+        isActive: Boolean
+        name: String
     }
 `;
 
