@@ -51,7 +51,7 @@ export const matchesTypesDef = `#graphql
 `;
 
 export const matchesQuerysDef = `#graphql
-    getMatches: [Match]
+    getMatches: [MatchPopulated]
     getMatch(id: String!): MatchPopulated
     getTournamentMatches(tournamentId: String!): [Match]
     getTeamMatches(teamId: String!): [Match]
