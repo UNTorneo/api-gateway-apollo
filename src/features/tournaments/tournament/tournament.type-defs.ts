@@ -88,7 +88,7 @@ export const tournamentTypesDef = `#graphql
 `;
 
 export const tournamentQuerysDef = `#graphql
-    getTournaments: [Tournament]
+    getTournaments: [TournamentPopulated]
     getTournament(id: String!): TournamentPopulated
     getTournamentsInProgress: [Tournament]
     getTournamentsByStatus(status: String!): [Tournament]
