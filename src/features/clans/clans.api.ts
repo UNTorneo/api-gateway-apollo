@@ -26,7 +26,9 @@ export class ClanApi extends RESTDataSource {
 
     async getClanById(id: number): Promise<Clan> {
         console.log(`get clan by id ${id}`);
-        return this.get<Clan>(`clans/${id}`);
+        const res = await this.get<Clan>(`clans/${id}`);
+        console.log(res);
+        return res;
     }
 
     async createClan(name: String, leaderId: number, createdAt: String): Promise<RequestResponse> {
