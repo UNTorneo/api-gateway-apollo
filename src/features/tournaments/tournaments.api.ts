@@ -87,6 +87,10 @@ export class TournamentApi extends RESTDataSource {
         return this.patch<RequestResponse>(`api/Team/tournament-register/${teamId}/${tournamentId}`);
     }
 
+    async registerMember(teamId: String, userId: String): Promise<RequestResponse> {
+        return this.patch<RequestResponse>(`api/Team/register-member/${teamId}/${userId}`);
+    }
+
     //* Matches
     // Queries
     async getMatches(): Promise<Match[]> {

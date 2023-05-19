@@ -51,4 +51,5 @@ export const teamsMutationsDef = `#graphql
     deleteTeam(id: String!): RequestResponse
     updateTeam(id: String!, team: UpdateTeam!): RequestResponse
     registerTeam(teamId: String!, tournamentId: String!): RequestResponse
+    registerMember(teamId: String!, userId: String!): RequestResponse
 `;

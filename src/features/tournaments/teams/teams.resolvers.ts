@@ -22,4 +22,7 @@ export const teamsMutationResolvers = {
     registerTeam: async (_, {teamId, tournamentId}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.registerTeam(teamId, tournamentId);
     },
+    registerMember: async (_, {teamId, userId}, {dataSources}: ContextValue) => {
+        return dataSources.tournamentApi.registerMember(teamId, userId);
+    },
 }
