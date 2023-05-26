@@ -10,6 +10,7 @@ import { TournamentApi } from './features/tournaments/tournaments.api';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import winston from 'winston';
 import { ChatApi } from './features/chats/chats.api';
+import { startRedis } from './core/redis/redis';
 dotenv.config()
 
 export interface ContextValue {
@@ -22,6 +23,8 @@ export interface ContextValue {
         chatsApi: ChatApi;
     };
 }
+
+startRedis();
 
 const server = new ApolloServer<ContextValue>({
     typeDefs,
