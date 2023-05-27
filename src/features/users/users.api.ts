@@ -18,7 +18,7 @@ export class UsersApi extends RESTDataSource {
     async login(email: String, password: String): Promise<TokenResponse> {
         try {
             console.log(`login`);
-            return this.post<TokenResponse>(`login`, { body: { email, password } });
+            return await this.post<TokenResponse>(`login`, { body: { email, password } });
         } catch (error) {
             console.log(error);
         }

@@ -1,5 +1,6 @@
 import { ContextValue } from "../../..";
-
+import { checkToken } from "../../../core/middlewares/checkJWT";
+import { ErrorResponse } from "../../users/token/token.interfaces";
 export const tournamentQueryResolvers = {
     getTournaments: async (_, __, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.getTournaments();
@@ -16,19 +17,38 @@ export const tournamentQueryResolvers = {
 }
 
 export const tournamentMutationResolvers = {
-    addTournament:async (_, {tournament}, {dataSources}: ContextValue) => {
+    addTournament:async (_, {token,tournament}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.addTournament(tournament);
     },
-    deleteTournament:async (_, {id}, {dataSources}: ContextValue) => {
+    deleteTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.deleteTournament(id);
     },
     updateTournament:async (_, {id, tournament}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateTournament(id, tournament);
     },
-    startTournament:async (_, {id}, {dataSources}: ContextValue) => {
+    startTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.startTournament(id);
     },
-    endTournament:async (_, {id}, {dataSources}: ContextValue) => {
+    endTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.endTournament(id);
     },
 }

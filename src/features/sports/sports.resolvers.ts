@@ -1,5 +1,6 @@
 import { ContextValue } from "../..";
-
+import { checkToken } from "../../core/middlewares/checkJWT";
+import { ErrorResponse } from "../users/token/token.interfaces";
 export const sportsQueryResolvers = {
     sport: async (_, {id}, { dataSources }: ContextValue) => {
         const res = await dataSources.sportsApi.getSport(id);
@@ -8,6 +9,7 @@ export const sportsQueryResolvers = {
     },
 
     sports:async (_, __, { dataSources }: ContextValue) => {
+        
         const res = await dataSources.sportsApi.getSports();
         console.log(res);
         return res;
@@ -28,7 +30,12 @@ export const sportsQueryResolvers = {
 }
 
 export const sportsMutationResolvers = {
-    addSport: async (_, {name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
+    addSport: async (_, {token,name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        
+        if(!tokenResponse)return errorResponse;
         return await dataSources.sportsApi.addSport(name,description,imgs,logo,recommendation);
     },
     updateSport: async (_, {id,name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {

@@ -26,10 +26,22 @@ export interface ContextValue {
 
 startRedis();
 
+function logQueryOrMutation(requestContext) {
+    if(requestContext.request.operationName!='IntrospectionQuery'
+     && requestContext.request.operationName!='Login')console.log('Executing query/mutation:', requestContext.request);
+
+    //if(requestContext.request.operationName!='IntrospectionQuery')console.log('Executing query/mutation:', requestContext.request.variables.token);
+    return {msg:'Hola'};
+  }
+
+
 const server = new ApolloServer<ContextValue>({
     typeDefs,
     resolvers,
+    
 });
+
+
 
 const { url } = await startStandaloneServer(server, {
     context: async () => {

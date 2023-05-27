@@ -1,5 +1,6 @@
 import { ContextValue } from "../../..";
-
+import { checkToken } from "../../../core/middlewares/checkJWT";
+import { ErrorResponse } from "../../users/token/token.interfaces";
 export const matchesQueryResolvers = {
     getMatches: async (_, __, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.getMatches();
@@ -26,10 +27,18 @@ export const matchesMutationResolvers = {
     updateMatch:async (_, {id, match}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateMatch(id, match);
     },
-    startMatch:async (_, {id}, {dataSources}: ContextValue) => {
+    startMatch:async (_, {token,id}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.startMatch(id);
     },
-    endMatch:async (_, {id}, {dataSources}: ContextValue) => {
+    endMatch:async (_, {token,id}, {dataSources}: ContextValue) => {
+        const tokenResponse = await checkToken(token);
+        console.log('TokenResponse',tokenResponse);
+        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
+        if(!tokenResponse)return errorResponse;
         return dataSources.tournamentApi.endMatch(id);
     },
 }

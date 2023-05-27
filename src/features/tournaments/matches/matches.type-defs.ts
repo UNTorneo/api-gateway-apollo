@@ -61,6 +61,6 @@ export const matchesMutationsDef = `#graphql
     addMatch(match: AddMatch!): RequestResponse
     deleteMatch(id: String!): RequestResponse
     updateMatch(id: String!, match: UpdateMatch!): RequestResponse
-    startMatch(id: String!): RequestResponse
-    endMatch(id: String!): RequestResponse
+    startMatch(token:String!,id: String!): RequestResponse
+    endMatch(token:String!,id: String!): RequestResponse
 `;
