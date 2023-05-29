@@ -27,18 +27,14 @@ export const matchesMutationResolvers = {
     updateMatch:async (_, {id, match}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateMatch(id, match);
     },
-    startMatch:async (_, {token,id}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        if(!tokenResponse)return errorResponse;
+    startMatch:async (_, {id}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.startMatch(id);
     },
-    endMatch:async (_, {token,id}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        if(!tokenResponse)return errorResponse;
+    endMatch:async (_, {id}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.endMatch(id);
     },
 }

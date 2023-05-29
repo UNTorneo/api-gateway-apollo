@@ -47,9 +47,9 @@ export const teamsQuerysDef = `#graphql
 `;
 
 export const teamsMutationsDef = `#graphql
-    addTeam(token:String!,team: AddTeam): RequestResponse
+    addTeam(team: AddTeam): RequestResponse
     deleteTeam(id: String!): RequestResponse
     updateTeam(id: String!, team: UpdateTeam!): RequestResponse
     registerTeam(teamId: String!, tournamentId: String!): RequestResponse
-    registerMember(token:String!,teamId: String!, userId: String!): RequestResponse
+    registerMember(teamId: String!, userId: String!): RequestResponse
 `;

@@ -2,6 +2,8 @@ import { ContextValue } from "../..";
 import { checkToken } from "../../core/middlewares/checkJWT";
 import { redisClient } from "../../core/redis/redis";
 
+
+
 export const tokenResolver = {
     TokenResponse: {
         __resolveType(obj, contextValue, info) {
@@ -63,7 +65,9 @@ export const usersMutationResolvers = {
     },
 
     addUser: async (_, {name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
-        return dataSources.usersApi.addUser(name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);
+        const res = await dataSources.usersApi.addUser(name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl); 
+        console.log(res);
+        return res;
     },
     updateUser: async (_, { id, name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl }, { dataSources }: ContextValue) => {
         return dataSources.usersApi.updateUser(id, name, lastName, username, birthday, email, password, countryId, cityId, latitude, longitude, photoUrl);

@@ -11,6 +11,7 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 import winston from 'winston';
 import { ChatApi } from './features/chats/chats.api';
 import { startRedis } from './core/redis/redis';
+
 dotenv.config()
 
 export interface ContextValue {
@@ -26,6 +27,7 @@ export interface ContextValue {
 
 startRedis();
 
+  
 function logQueryOrMutation(requestContext) {
     if(requestContext.request.operationName!='IntrospectionQuery'
      && requestContext.request.operationName!='Login')console.log('Executing query/mutation:', requestContext.request);
@@ -44,7 +46,7 @@ const server = new ApolloServer<ContextValue>({
 
 
 const { url } = await startStandaloneServer(server, {
-    context: async () => {
+    context: async ({req}) => {
         const { cache } = server;
         const logger = winston.createLogger({
             transports: [
@@ -58,7 +60,8 @@ const { url } = await startStandaloneServer(server, {
                 usersApi: new UsersApi({ cache, logger }),
                 clanApi: new ClanApi({ cache, logger }),
                 tournamentApi: new TournamentApi({ cache, logger }),
-                chatsApi: new ChatApi({ cache, logger})
+                chatsApi: new ChatApi({ cache, logger}),
+                headers: req.headers
             },
         };
     },

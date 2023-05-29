@@ -5,7 +5,7 @@ import { Mode } from './mode/mode.interfaces'
 import { RequestOptions } from 'https';
 import { redisClient } from '../../core/redis/redis';
 export class sportsApi extends RESTDataSource {
-    override baseURL = process.env.URL_MS_SPORTS + "/";
+    override baseURL = 'https://sports-ms-4yiv26znhq-uc.a.run.app/'//process.env.URL_MS_SPORTS + "/";
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('sportsApi throwIfResponseIsError: ', options);
         return;
@@ -13,7 +13,6 @@ export class sportsApi extends RESTDataSource {
 
     async getSport(id: String): Promise<Sport> {
         try {
-            await redisClient.set(`Holaaaa`, `Holandaaaas`);
             console.log(this.baseURL + `getSport`);
             const res = await this.get<Sport>(`sport/${id}`);
             console.log(res);

@@ -95,9 +95,9 @@ export const tournamentQuerysDef = `#graphql
 `;
 
 export const tournamentMutationsDef = `#graphql
-    addTournament(token:String!,tournament: AddTournament): RequestResponse
-    deleteTournament(token:String!,id: String!): RequestResponse
+    addTournament(tournament: AddTournament): RequestResponse
+    deleteTournament(,id: String!): RequestResponse
     updateTournament(id: String!, tournament: UpdateTournament!): RequestResponse
-    startTournament(token:String!,id: String!): RequestResponse
-    endTournament(token:String!,id: String!): RequestResponse
+    startTournament(id: String!): RequestResponse
+    endTournament(id: String!): RequestResponse
 `;

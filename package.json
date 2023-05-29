@@ -14,8 +14,10 @@
   "dependencies": {
     "@apollo/datasource-rest": "^5.0.2",
     "@apollo/server": "^4.5.0",
+    "@types/ldapjs": "^2.2.5",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
+    "ldapjs": "^3.0.2",
     "redis": "^4.6.6",
     "winston": "^3.8.2"
   },

@@ -17,38 +17,27 @@ export const tournamentQueryResolvers = {
 }
 
 export const tournamentMutationResolvers = {
-    addTournament:async (_, {token,tournament}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        
-        if(!tokenResponse)return errorResponse;
+    addTournament:async (_, {tournament}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.addTournament(tournament);
     },
-    deleteTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        
-        if(!tokenResponse)return errorResponse;
+    deleteTournament:async (_, {id}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.deleteTournament(id);
     },
     updateTournament:async (_, {id, tournament}, {dataSources}: ContextValue) => {
         return dataSources.tournamentApi.updateTournament(id, tournament);
     },
-    startTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        
-        if(!tokenResponse)return errorResponse;
+    startTournament:async (_, {id}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.startTournament(id);
     },
-    endTournament:async (_, {token,id}, {dataSources}: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        if(!tokenResponse)return errorResponse;
+    endTournament:async (_, {id}, {dataSources}: ContextValue) => {
+        const jwtoken = (dataSources as any).headers.token;
+        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.endTournament(id);
     },
 }
