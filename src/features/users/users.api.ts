@@ -6,7 +6,7 @@ import { City } from './city/cities.interfaces';
 import { Country } from './country/countries.interfaces';
 
 export class UsersApi extends RESTDataSource {
-    override baseURL = 'https://users-microservice-fastapi-4yiv26znhq-uc.a.run.app/';//process.env.URL_MS_USERS+'/';
+    override baseURL = process.env.URL_MS_USERS+'/';
     protected override throwIfResponseIsError(options): Promise<void> {
         console.log('UsersApi throwIfResponseIsError: ', options);
         return;
