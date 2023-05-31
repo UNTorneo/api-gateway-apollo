@@ -13,7 +13,7 @@ export const teamsQueryResolvers = {
 export const teamsMutationResolvers = {
     addTeam: async (_, {team}, {dataSources}: ContextValue) => {
         const jwtoken = (dataSources as any).headers.token;
-        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
+        if(! await checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.addTeam(team);
     },
     deleteTeam: async (_, {id}, {dataSources}: ContextValue) => {
@@ -27,7 +27,7 @@ export const teamsMutationResolvers = {
     },
     registerMember: async (_, {teamId, userId}, {dataSources}: ContextValue) => {
         const jwtoken = (dataSources as any).headers.token;
-        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
+        if(! await checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.registerMember(teamId, userId);
     },
 }

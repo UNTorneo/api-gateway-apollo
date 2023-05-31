@@ -30,12 +30,7 @@ export const sportsQueryResolvers = {
 }
 
 export const sportsMutationResolvers = {
-    addSport: async (_, {token,name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
-        const tokenResponse = await checkToken(token);
-        console.log('TokenResponse',tokenResponse);
-        const errorResponse = {'error':"Sesión expirada, inicia sesión de nuevo."} as ErrorResponse;
-        
-        if(!tokenResponse)return errorResponse;
+    addSport: async (_, {name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {
         return await dataSources.sportsApi.addSport(name,description,imgs,logo,recommendation);
     },
     updateSport: async (_, {id,name,description,imgs,logo,recommendation}, { dataSources }: ContextValue) => {

@@ -31,7 +31,7 @@ export const sportsQuerysDef = `#graphql
 `;
 
 export const sportsMutationsDef = `#graphql
-    addSport(token:String!,name: String!,description: String!,imgs: [String],logo: String,recommendation: [String]): RequestResponse
+    addSport(name: String!,description: String!,imgs: [String],logo: String,recommendation: [String]): RequestResponse
     updateSport(id:String!,name: String,description: String,imgs: [String],logo: String,recommendation: [String]): RequestResponse
     deleteSport(id: String!): RequestResponse
 

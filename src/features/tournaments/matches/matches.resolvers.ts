@@ -29,12 +29,12 @@ export const matchesMutationResolvers = {
     },
     startMatch:async (_, {id}, {dataSources}: ContextValue) => {
         const jwtoken = (dataSources as any).headers.token;
-        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
+        if(! await checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.startMatch(id);
     },
     endMatch:async (_, {id}, {dataSources}: ContextValue) => {
         const jwtoken = (dataSources as any).headers.token;
-        if(!checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
+        if(! await checkToken(jwtoken))return {error:'Tu sesión ha expirado, inicia sesión nuevamente'};
         return dataSources.tournamentApi.endMatch(id);
     },
 }
