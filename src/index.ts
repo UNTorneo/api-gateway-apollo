@@ -11,6 +11,7 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 import winston from 'winston';
 import { ChatApi } from './features/chats/chats.api';
 import { startRedis } from './core/redis/redis';
+import { ConsumerPostApi } from './features/consumerPost/consumerPost.api';
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ export interface ContextValue {
         clanApi: ClanApi;
         tournamentApi: TournamentApi;
         chatsApi: ChatApi;
+        consumerPostApi: ConsumerPostApi;
     };
 }
 
@@ -61,6 +63,7 @@ const { url } = await startStandaloneServer(server, {
                 clanApi: new ClanApi({ cache, logger }),
                 tournamentApi: new TournamentApi({ cache, logger }),
                 chatsApi: new ChatApi({ cache, logger}),
+                consumerPostApi: new ConsumerPostApi({ cache, logger}),
                 headers: req.headers
             },
         };
